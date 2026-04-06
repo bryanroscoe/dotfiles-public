@@ -4,7 +4,52 @@ Shareable configs and tools from my dev setup. Works on macOS and Windows.
 
 ## What's included
 
+### Claude Code Status Line
+
+<img width="1498" height="111" alt="Claude Code status line" src="https://gist.github.com/user-attachments/assets/ceb19afd-5326-487d-9f38-617698ebf7a6" />
+
+A Powerline-style status line for [Claude Code](https://claude.ai/code) with a Catppuccin Mocha color scheme. Shows directory, worktree indicator, git branch/status, current task, context window usage (progress bar), active model, API usage limits with reset times, and clock.
+
+**Requires [FiraCode Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases/latest)** — the context window progress bar uses FiraCode-specific glyphs (`U+EE00`–`U+EE05`) that only render in this font.
+
+```bash
+brew install --cask font-fira-code-nerd-font
+```
+
+#### Installation
+
+```bash
+cp claude/statusline.js ~/.claude/statusline.js
+```
+
+Add to `~/.claude/settings.json`:
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "node \"~/.claude/statusline.js\""
+  }
+}
+```
+
+### Starship Prompt
+
+[Starship](https://starship.rs/) single-line prompt with Catppuccin Mocha colors: directory, git branch/status, language versions, docker context, exit status, and command duration.
+
+```bash
+cp starship.toml ~/.config/starship.toml
+```
+
+### WezTerm
+
+[WezTerm](https://wezfurlong.org/wezterm/) terminal config with Catppuccin Mocha theme, tmux-style `Ctrl+b` leader key, Powerline status bar with git branch, and full pane/tab management. Press `Leader + ?` for a built-in keybinding cheat sheet.
+
+```bash
+cp .wezterm.lua ~/.wezterm.lua
+```
+
 ### `.gitconfig`
+
 Git aliases and settings. Highlights:
 - `git cm "message"` — add all + commit
 - `git ammend` — amend last commit (no edit)
@@ -13,35 +58,6 @@ Git aliases and settings. Highlights:
 - `git track` — push + set upstream for current branch
 - `git brn <name>` — fetch, checkout origin/develop, create new branch
 - `git hist` — compact 10-line history
-
-### `starship.toml`
-[Starship](https://starship.rs/) cross-shell prompt configuration.
-
-### `claude/statusline-command.sh`
-A Powerline-style status line for [Claude Code](https://claude.ai/code) with a Catppuccin Mocha color scheme. Shows:
-- Current directory and git branch/status
-- Context window usage (progress bar)
-- Active model
-- API usage limits with reset times
-
-Requires a [Nerd Font](https://www.nerdfonts.com/) and `jq`.
-
-## Usage
-
-Cherry-pick what you want, or clone and symlink:
-
-```bash
-git clone https://github.com/bryanroscoe/dotfiles-public.git
-
-# Starship
-cp dotfiles-public/starship.toml ~/.config/starship.toml
-
-# Claude status line
-cp dotfiles-public/claude/statusline-command.sh ~/.claude/statusline-command.sh
-chmod +x ~/.claude/statusline-command.sh
-
-# Git aliases (copy the [alias] section into your .gitconfig)
-```
 
 ## See also
 
