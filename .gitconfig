@@ -1,0 +1,42 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = YOUR_NAME
+	email = YOUR_EMAIL
+[core]
+	editor = vim
+	autocrlf = false
+	longpaths = true
+	eol = LF
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
+	interactive = auto
+[pull]
+    rebase = true
+[push]
+	default = simple
+[alias]
+    ammend = "!git add . ; git commit --amend --no-edit"
+    ci = commit
+    cm = "!git add . ; git commit -m "
+    co = checkout
+    cob = checkout -b
+    brd = branch -D
+    br = branch
+    f = fetch -p
+    brn = "!git fetch -p ; git co origin/develop ; git co -b"
+    lg = "log --graph --pretty=format:'%C(green)%h [%an]%Creset -%C(cyan)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=relative"
+    s = status
+    st = "status -sb"
+    lg1 = "log --oneline --decorate"
+    hist = "log --pretty=format:'%h %ad | %s%d [%an]' --date=short --max-count=10"
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    track = "!git push -u origin $(git branch-name)"
+[help]
+	autocorrect = 1
